@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Form</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Добавим стили для скрытия формы регистрации по умолчанию */
+      #registerForm {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper" id="loginWrapper">
+      <form action="" id="loginForm">
+        <h1>Login</h1>
+        <div class="input-box">
+          <input type="text" placeholder="Email" required />
+          <i class="bx bxs-user"></i>
+        </div>
+        <div class="input-box">
+          <input type="password" placeholder="Password" required />
+          <i class="bx bxs-lock-alt"></i>
+        </div>
+        <div class="remember-forgot">
+          <label><input type="checkbox" />Remember Me</label>
+          <a href="#">Forgot Password</a>
+        </div>
+        <button type="submit" class="btn">Login</button>
+        <div class="register-link">
+          <p>
+            Don't have an account? <a href="#" id="registerLink">Register</a>
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <!-- Форма регистрации -->
+    <div class="wrapper" id="registerForm">
+      <form action="">
+        <h1>Register</h1>
+        <div class="input-box">
+          <input type="text" placeholder="Email" required />
+          <i class="bx bxs-envelope"></i>
+        </div>
+        <div class="input-box">
+          <input type="password" placeholder="Password" required />
+          <i class="bx bxs-lock-alt"></i>
+        </div>
+        <div class="input-box">
+          <input type="password" placeholder="Confirm Password" required />
+          <i class="bx bxs-lock-alt"></i>
+        </div>
+        <div class="input-box">
+          <input type="text" placeholder="Phone" required />
+          <i class="bx bxs-phone"></i>
+        </div>
+        <div class="input-box">
+          <input type="text" placeholder="University Name" required />
+          <i class="bx bxs-school"></i>
+        </div>
+        <div class="input-box">
+          <input type="text" placeholder="University Code" required />
+          <i class="bx bxs-barcode"></i>
+        </div>
+        <button type="submit" class="btn">Register</button>
+        <div class="register-link">
+          <p>Already have an account? <a href="#" id="loginLink">Login</a></p>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      // JavaScript для переключения между формами входа и регистрации
+      document
+        .getElementById("registerLink")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          document.getElementById("registerForm").style.display = "block";
+          document.getElementById("loginWrapper").style.display = "none";
+        });
+
+      document
+        .getElementById("loginLink")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          document.getElementById("registerForm").style.display = "none";
+          document.getElementById("loginWrapper").style.display = "block";
+        });
+    </script>
+  </body>
+</html>
