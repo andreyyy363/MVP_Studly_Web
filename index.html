@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Форма входу</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Сховати форму реєстрації за замовчуванням */
+      #registerForm {
+        display: none;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      .back-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 24px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper" id="loginWrapper">
+      <form action="" id="loginForm">
+        <h1>Увійти</h1>
+        <div class="input-box">
+          <input type="text" placeholder="Електронна пошта" required />
+          <i class="bx bxs-envelope"></i>
+        </div>
+        <div class="input-box">
+          <input type="password" placeholder="Пароль" required />
+          <i class="bx bxs-lock-alt"></i>
+        </div>
+        <div class="remember-forgot">
+          <label><input type="checkbox" />Запам'ятати мене</label>
+          <a href="#">Забули пароль?</a>
+        </div>
+        <button type="submit" class="btn">Увійти</button>
+        <div class="register-link">
+          <p>
+            Не маєте облікового запису?
+            <a href="#" id="registerLink">Зареєструватися</a>
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <!-- Форма реєстрації -->
+    <div class="wrapper" id="registerForm">
+      <form action="">
+        <h1>Реєстрація</h1>
+        <!-- Перша частина реєстрації -->
+        <div id="part1">
+          <div class="input-box">
+            <input type="text" placeholder="Електронна пошта" required />
+            <i class="bx bxs-envelope"></i>
+          </div>
+          <div class="input-box">
+            <input type="text" placeholder="Прізвище" required />
+            <i class="bx bxs-user"></i>
+          </div>
+          <div class="input-box">
+            <input type="text" placeholder="Ім'я" required />
+            <i class="bx bxs-user"></i>
+          </div>
+          <div class="input-box">
+            <input type="text" placeholder="По батькові" required />
+            <i class="bx bxs-user"></i>
+          </div>
+          <div class="input-box">
+            <input type="text" placeholder="Телефон" required />
+            <i class="bx bxs-phone"></i>
+          </div>
+          <div class="input-box">
+            <input type="password" placeholder="Пароль" required />
+            <i class="bx bxs-lock-alt"></i>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="student"
+              name="status"
+              value="student"
+              checked
+              onclick="togglePositionField()"
+            />
+            <label for="student">Студент</label>
+            <input
+              type="radio"
+              id="teacher"
+              name="status"
+              value="teacher"
+              onclick="togglePositionField()"
+            />
+            <label for="teacher">Викладач</label>
+          </div>
+          <button type="button" class="btn" onclick="nextPart()">Далі</button>
+        </div>
+
+        <!-- Друга частина реєстрації -->
+        <div id="part2" style="display: none; max-width: 500px; margin: 0 auto">
+          <div class="input-box" style="margin-bottom: 15px">
+            <select
+              id="institute"
+              required
+              style="width: 100%; padding: 12px; font-size: 16px"
+            >
+              <option value="" disabled selected>Оберіть університет</option>
+              <option value="1">Університет 1</option>
+              <option value="2">Університет 2</option>
+              <option value="3">Університет 3</option>
+            </select>
+          </div>
+          <div class="input-box" style="margin-bottom: 15px">
+            <select
+              id="group"
+              required
+              style="width: 100%; padding: 12px; font-size: 16px"
+            >
+              <option value="" disabled selected>Оберіть групу</option>
+              <option value="1">Група 1</option>
+              <option value="2">Група 2</option>
+              <option value="3">Група 3</option>
+            </select>
+          </div>
+          <div class="input-box" id="positionField" style="display: none">
+            <input type="text" placeholder="Посада" />
+            <i class="bx bxs-user"></i>
+          </div>
+          <div style="display: flex; justify-content: space-between">
+            <button type="button" class="btn btn-back" onclick="prevPart()">
+              Назад
+            </button>
+            <button type="submit" class="btn btn-register">
+              Зареєструватися
+            </button>
+          </div>
+          <div
+            class="register-link"
+            style="text-align: center; margin-top: 10px"
+          >
+            <p>
+              Вже маєте обліковий запис? <a href="#" id="loginLink">Увійти</a>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      // JavaScript для переключения между формами входа и регистрации
+      document
+        .getElementById("registerLink")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          document.getElementById("registerForm").style.display = "block";
+          document.getElementById("loginWrapper").style.display = "none";
+        });
+
+      document
+        .getElementById("loginLink")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          document.getElementById("registerForm").style.display = "none";
+          document.getElementById("loginWrapper").style.display = "block";
+        });
+
+      // JavaScript для переключения между частями формы регистрации
+      function nextPart() {
+        document.getElementById("part1").style.display = "none";
+        document.getElementById("part2").style.display = "block";
+      }
+
+      function prevPart() {
+        document.getElementById("part1").style.display = "block";
+        document.getElementById("part2").style.display = "none";
+      }
+
+      // JavaScript для переключения видимости поля "Посада" в зависимости от выбранного статуса
+      function togglePositionField() {
+        var teacherRadio = document.getElementById("teacher");
+        var positionField = document.getElementById("positionField");
+
+        if (teacherRadio.checked) {
+          positionField.style.display = "block";
+        } else {
+          positionField.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>
